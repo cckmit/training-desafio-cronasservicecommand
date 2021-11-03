@@ -1,0 +1,25 @@
+apply plugin: 'org.springframework.boot'
+
+dependencies {
+	compile 'org.springframework.boot:spring-boot-starter'
+	compile project(":domain-usecase")
+	
+	compile 'org.reactivecommons.utils:object-mapper:0.1.0'
+	runtime('org.springframework.boot:spring-boot-devtools')
+
+	compile project(":entry-points-async-command-handlers")
+	compile project(":driven-adapters-async-messages-senders")
+	compile project(":entry-points-subs-events")
+	compile project(":driven-adapters-mongodb-repository")
+	compile project(":driven-adapters-async-event-bus")
+	compile project(":entry-points-reactive-web")
+//DEPENDENCIES_APP_SERVICE
+
+
+
+
+
+
+
+	
+}

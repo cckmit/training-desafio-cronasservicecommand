@@ -1,0 +1,51 @@
+@startuml C4_Elements
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+AddRelTag("async", $lineStyle = DashedLine())
+
+Person(cliente, "Cliente")
+Person(dj, "Dj")
+Person(bar, "Bar")
+System_Ext(pasarelaPago, "Pasarela de Pago", "API de conexion con pasarela de pago")
+
+System_Boundary(c1, "DjOnline") {
+    Container(appMovil, "App Móvil","Flutter","Interfas de usuario, permita la comunicacion con los diferentes clientes")
+    Container(apigateWay, "API Gateway","Java","Intermediario que coordinara las peticiones hacia los servicios correspondientes")
+    Container(apiGestionBar, "API Gestión Bar","java","Provee las funcionalidades para el Bar")
+    Container(apiGestionDj, "API Gestión Dj","java","Provee las funcionalidades para el Dj")
+    Container(apiGestionCliente, "API Gestión Cliente","java","Provee las funcionalidades para los clientes")
+    Container(apiGestionPlaylist, "API Gestión Playlist","java","Controla las votaciones y el ranking de las playlist")
+    Container(apiGestionPuntos, "API Gestión Puntos","java","Permite realizar los procesos de intercambio de puntos")
+    Container(apiGestionPagos, "API Gestión Pagos","java","Provee las funcionalidades para los procesos de pagos que deseen realizar")
+    ContainerDb(db, "Database","NoSQL Database")
+    ContainerQueue(queue, "Event Bus","Rabbit")
+}
+
+Rel(cliente, appMovil, "Usa", "HTTPS")
+Rel(dj, appMovil, "Usa", "HTTPS")
+Rel(bar, appMovil, "Usa", "HTTPS")
+Rel(appMovil, apigateWay, "Usa", "HTTPS")
+
+Rel(apigateWay, apiGestionBar, "Usa", "HTTPS")
+Rel(apigateWay, apiGestionDj, "Usa", "HTTPS")
+Rel(apigateWay, apiGestionCliente, "Usa", "HTTPS")
+Rel(apigateWay, apiGestionPlaylist, "Usa", "HTTPS")
+Rel(apigateWay, apiGestionPuntos, "Usa", "HTTPS")
+Rel(apigateWay, apiGestionPagos, "Usa", "HTTPS")
+
+Rel(apiGestionBar, db, "Lectura/Escritura", "Querys")
+Rel(apiGestionDj, db, "Lectura/Escritura", "Querys")
+Rel(apiGestionCliente, db, "Lectura/Escritura", "Querys")
+Rel(apiGestionPlaylist, db, "Lectura/Escritura", "Querys")
+Rel(apiGestionPuntos, db, "Lectura/Escritura", "Querys")
+Rel(apiGestionPagos, db, "Lectura/Escritura", "Querys")
+
+BiRel(apiGestionBar, queue, "Usa", "JSON,async", $tags="async")
+BiRel(apiGestionDj, queue, "Usa", "JSON,async", $tags="async")
+BiRel(apiGestionCliente, queue, "Usa", "JSON,async", $tags="async")
+BiRel(apiGestionPlaylist, queue, "Usa", "JSON,async", $tags="async")
+BiRel(apiGestionPuntos, queue, "Usa", "JSON,async", $tags="async")
+BiRel(apiGestionPagos, queue, "Usa", "JSON,async", $tags="async")
+
+Rel_L(apiGestionPagos, pasarelaPago, "Usa", "HTTPS")
+@enduml

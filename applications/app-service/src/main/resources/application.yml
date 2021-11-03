@@ -1,0 +1,17 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: cronasservicecommand
+  data:
+    mongodb:
+      uri: mongodb+srv://marrieta:Yp2dRRJncGjIRyXY@cluster-dev.e0ajx.mongodb.net/caswrite?retryWrites=true&w=majority
+  rabbitmq:
+    host: poodle.rmq2.cloudamqp.com
+    port: 5672
+    username: fxtqvpnk
+    password: kMSFeZRZ22r30TrMMKxsASNqMxePtJGb
+    virtual-host: fxtqvpnk
+app:
+  context: /api
+

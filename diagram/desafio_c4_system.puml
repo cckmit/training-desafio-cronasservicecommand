@@ -1,0 +1,26 @@
+@startuml Desafio_C4_System
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+AddRelTag("async", $lineStyle = DashedLine())
+
+Person(cliente, "User")
+Container(CronAsServiceFront, "CronAsService Front","App Web","Recibe las peticiones del usuario y consume la api correspondiente.")
+Container(CronAsServiceCommandApi, "CronAsService Command Api","Api Rest, Commands","Recibe las peticiones https desde el front y ejecuta los comandos pertinentes.")
+Container(CronAsServiceQueryApi, "CronAsService Query Api","Api Rest, Querys","Recibe las peticiones https desde el front y regresa la informacion correspondiente.")
+Container(CronAsServiceExecutorProcess, "CronAsService Executor Process","Events","Realizara la ejecucion de los jobs programados y tratara eventos como las notificaciones y los logs")
+ContainerQueue(queue, "Event Bus","Rabbit")
+ContainerDb(dbw, "Write Database","NoSQL Database")
+ContainerDb(dbr, "Read Database","NoSQL Database")
+
+Rel(cliente, CronAsServiceFront, "Usa", "HTTPS")
+Rel(CronAsServiceFront, CronAsServiceCommandApi, "Usa", "HTTPS")
+Rel(CronAsServiceFront, CronAsServiceQueryApi, "Usa", "HTTPS")
+
+Rel(CronAsServiceCommandApi, dbw, "Escritura", "Querys")
+Rel(CronAsServiceQueryApi, dbr, "Lectura", "Querys")
+Rel(CronAsServiceExecutorProcess, dbr, "Actualizacion", "Querys")
+
+BiRel(CronAsServiceCommandApi, queue, "Usa", "Events, async", $tags="async")
+BiRel(CronAsServiceExecutorProcess, queue, "Usa", "Events, async", $tags="async")
+
+@enduml

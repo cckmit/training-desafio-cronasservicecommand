@@ -1,0 +1,25 @@
+@startuml Desafio_use_case
+'https://plantuml.com/use-case-diagram
+
+:User: as User
+:App Execute Process: as process
+
+(Create Job)
+(Program Job)
+(Find Job Status)
+
+(Execute Job)
+(Update Job Status)
+(Send Email)
+
+User --> (Create Job)
+User --> (Program Job)
+User --> (Find Job Status)
+
+process --> (Send Email)
+process --> (Execute Job)
+process --> (Update Job Status)
+
+
+
+@enduml
