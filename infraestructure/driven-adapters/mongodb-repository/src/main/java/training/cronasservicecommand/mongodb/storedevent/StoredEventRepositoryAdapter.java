@@ -1,6 +1,6 @@
 package training.cronasservicecommand.mongodb.storedevent;
 
-import com.sura.reactive.repository.mongo.AdapterOperations;
+import training.cronasservicecommand.reactive.repository.mongo.AdapterOperations;
 import org.reactivecommons.utils.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

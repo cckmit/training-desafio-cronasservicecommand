@@ -14,8 +14,8 @@ import training.cronasservicecommand.usecase.job.RequestExecutionJobUseCase;
 public class UseCaseConfig {
 
     @Bean
-    public CreateJobUseCase createJobUseCase(StoredEventRepository repository, JobMessageGateway jobMessageGateway) {
-        return new CreateJobUseCase(repository, jobMessageGateway);
+    public CreateJobUseCase createJobUseCase() {
+        return new CreateJobUseCase();
     }
 
     @Bean

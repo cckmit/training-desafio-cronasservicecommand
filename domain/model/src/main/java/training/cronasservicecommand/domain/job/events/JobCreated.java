@@ -1,26 +1,53 @@
 package training.cronasservicecommand.domain.job.events;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import training.cronasservicecommand.domain.common.Event;
+import training.cronasservicecommand.domain.generic.DomainEvent;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-public class JobCreated implements Event {
+public class JobCreated extends DomainEvent {
 
-    public static final String EVENT_NAME = "cas.events.job.created";
-    private String jobId;
-    private String url;
-    private String httpMethod;
-    private String requestBody;
-    private String interval;
-    private String timezone;
+    private final String name;
+    private final String url;
+    private final String httpMethod;
+    private final String requestBody;
+    private final String interval;
+    private final String timezone;
+    private final String email;
 
-    @Override
-    public String name() {
-        return EVENT_NAME;
+    public JobCreated(String name, String url, String httpMethod, String requestBody, String interval, String timezone, String email) {
+        super("cas.job.jobcreated");
+        this.name = name;
+        this.url =  url;
+        this.httpMethod = httpMethod;
+        this.requestBody = requestBody;
+        this.interval = interval;
+        this.timezone = timezone;
+        this.email = email;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public String getHttpMethod() {
+        return httpMethod;
+    }
+
+    public String getRequestBody() {
+        return requestBody;
+    }
+
+    public String getInterval() {
+        return interval;
+    }
+
+    public String getTimezone() {
+        return timezone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
 }

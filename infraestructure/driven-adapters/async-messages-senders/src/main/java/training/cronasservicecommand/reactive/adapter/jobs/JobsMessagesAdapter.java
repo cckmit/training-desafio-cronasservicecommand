@@ -8,6 +8,7 @@ import org.reactivecommons.async.impl.config.annotations.EnableDirectAsyncGatewa
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 import training.cronasservicecommand.domain.common.Event;
+import training.cronasservicecommand.domain.generic.DomainEvent;
 import training.cronasservicecommand.domain.job.gateway.JobMessageGateway;
 
 import java.util.UUID;
@@ -22,14 +23,21 @@ public class JobsMessagesAdapter implements JobMessageGateway {
     static final String JOB_APP_NAME = "cronasserviceprocess";
     private final DirectAsyncGateway asyncGateway;
 
-    @Override
-    public Mono<Void> send(Event event) {
-        log.log(Level.INFO, "Enviando comando: {0} ", new String[] {event.name()});
-        final Command<Event> command = new Command<>(event.name(), uuid(), event);
-        return asyncGateway.sendCommand(command, JOB_APP_NAME);
-    }
+//    @Override
+//    public Mono<Void> send(Event event) {
+//        log.log(Level.INFO, "Enviando comando: {0} ", new String[] {event.name()});
+//        final Command<Event> command = new Command<>(event.name(), uuid(), event);
+//        return asyncGateway.sendCommand(command, JOB_APP_NAME);
+//    }
 
     private String uuid() {
         return UUID.randomUUID().toString();
+    }
+
+    @Override
+    public Mono<Void> send(DomainEvent event) {
+        log.log(Level.INFO, "Enviando comando: {0} ", new String[] {event.getType()});
+        final Command<DomainEvent> command = new Command<>(event.getType(), uuid(), event);
+        return asyncGateway.sendCommand(command, JOB_APP_NAME);
     }
 }

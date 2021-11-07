@@ -13,8 +13,8 @@ import java.util.Date;
 public class StoredEventData {
     @Id
     public String id;
-    public String jobId;
+    public String aggregateId;
     public String name;
-    private Object body;
+    private String eventBody;
     private Date createDate;
 }

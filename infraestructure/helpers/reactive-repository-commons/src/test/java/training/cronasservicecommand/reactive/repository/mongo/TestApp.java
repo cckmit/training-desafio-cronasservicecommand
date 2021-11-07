@@ -1,4 +1,4 @@
-package com.sura.reactive.repository.mongo;
+package training.cronasservicecommand.reactive.repository.mongo;
 
 import org.reactivecommons.utils.ObjectMapper;
 import org.reactivecommons.utils.ObjectMapperImp;

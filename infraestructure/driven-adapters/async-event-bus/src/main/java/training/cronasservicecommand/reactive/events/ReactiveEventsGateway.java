@@ -2,13 +2,12 @@ package training.cronasservicecommand.reactive.events;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
-import org.reactivecommons.api.domain.DomainEvent;
 import org.reactivecommons.api.domain.DomainEventBus;
 import org.reactivecommons.async.impl.config.annotations.EnableDomainEventBus;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
-import training.cronasservicecommand.domain.common.Event;
 import training.cronasservicecommand.domain.common.EventsGateway;
+import training.cronasservicecommand.domain.generic.Command;
 
 import java.util.UUID;
 import java.util.logging.Level;
@@ -25,9 +24,15 @@ public class ReactiveEventsGateway implements EventsGateway {
 
     private final DomainEventBus domainEventBus;
 
+//    @Override
+//    public Mono<Void> emit(DomainEvent event) {
+//        log.log(Level.INFO, "Emitiendo evento de dominio: {0}: {1}", new String[]{event.getType(), event.toString()});
+//        return from(domainEventBus.emit(new org.reactivecommons.api.domain.DomainEvent<>(event.getType(), UUID.randomUUID().toString(), event)));
+//    }
+
     @Override
-    public Mono<Void> emit(Event event) {
-        log.log(Level.INFO, "Emitiendo evento de dominio: {0}: {1}", new String[]{event.name(), event.toString()});
-        return from(domainEventBus.emit(new DomainEvent<>(event.name(), UUID.randomUUID().toString(), event)));
+    public Mono<Void> emit(Command command) {
+        log.log(Level.INFO, "Emitiendo evento de interno: {0}: {1}", new String[]{command.getType(), command.toString()});
+        return from(domainEventBus.emit(new org.reactivecommons.api.domain.DomainEvent<>(command.getType(), UUID.randomUUID().toString(), command)));
     }
 }

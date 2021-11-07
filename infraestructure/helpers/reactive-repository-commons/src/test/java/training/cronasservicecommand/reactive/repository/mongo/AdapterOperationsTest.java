@@ -1,7 +1,7 @@
-package com.sura.reactive.repository.mongo;
+package training.cronasservicecommand.reactive.repository.mongo;
 
-import com.sura.reactive.repository.mongo.testdata.DomainEntity;
-import com.sura.reactive.repository.mongo.testdata.EntityRepositoryAdapter;
+import training.cronasservicecommand.reactive.repository.mongo.testdata.DomainEntity;
+import training.cronasservicecommand.reactive.repository.mongo.testdata.EntityRepositoryAdapter;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

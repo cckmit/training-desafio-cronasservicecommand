@@ -11,9 +11,9 @@ import java.util.Date;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class StoredEventFactory {
-    public static Mono<StoredEvent> create(String name,String jobId, String body){
+    public static Mono<StoredEvent> create(String aggregateId, String name, String body){
         return StringUtils.isEmpty(name) && null != body
                 ? Mono.error(BusinessException.Type.INVALID_INITIAL_DATA.build())
-                : UniqueIDGenerator.uuid().map(id -> StoredEvent.builder().id(id).name(name).jobId(jobId).body(body).createDate(new Date()).build());
+                : UniqueIDGenerator.uuid().map(id -> StoredEvent.builder().id(id).aggregateId(aggregateId).name(name).eventBody(body).createDate(new Date()).build());
     }
 }

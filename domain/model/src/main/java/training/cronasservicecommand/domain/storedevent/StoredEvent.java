@@ -9,8 +9,8 @@ import java.util.Date;
 @Builder(toBuilder = true)
 public class StoredEvent {
     public final String id;
-    public final String jobId;
+    public final String aggregateId;
     public final String name;
-    private final String body;
+    private final String eventBody;
     private final Date createDate;
 }

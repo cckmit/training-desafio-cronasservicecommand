@@ -1,6 +1,6 @@
-package com.sura.reactive.repository.mongo.testdata;
+package training.cronasservicecommand.reactive.repository.mongo.testdata;
 
-import com.sura.reactive.repository.mongo.AdapterOperations;
+import training.cronasservicecommand.reactive.repository.mongo.AdapterOperations;
 import org.reactivecommons.utils.ObjectMapper;
 import org.springframework.stereotype.Repository;
 

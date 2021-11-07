@@ -1,4 +1,4 @@
-package com.sura.reactive.repository.mongo.testdata;
+package training.cronasservicecommand.reactive.repository.mongo.testdata;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;

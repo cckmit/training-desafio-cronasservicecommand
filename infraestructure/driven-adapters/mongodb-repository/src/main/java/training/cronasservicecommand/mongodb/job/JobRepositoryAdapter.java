@@ -1,7 +1,7 @@
 package training.cronasservicecommand.mongodb.job;
 
 import com.mongodb.MongoClient;
-import com.sura.reactive.repository.mongo.AdapterOperations;
+import training.cronasservicecommand.reactive.repository.mongo.AdapterOperations;
 import org.bson.Document;
 import org.reactivecommons.utils.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,20 +23,20 @@ public class JobRepositoryAdapter extends AdapterOperations<Job, JobData, String
 
     @Autowired
     public JobRepositoryAdapter(JobDataRepository repository, ObjectMapper mapper) {
-        super(repository, mapper, d -> mapper.mapBuilder(d, Job.JobBuilder.class).build());
+        super(repository, mapper, d -> mapper.mapBuilder(d, Job.class));
     }
 
     @Override
     public Mono<Job> save(JobCreated event){
-        Map<String, Object> document = new HashMap<>();
-        document.put("_id", event.getJobId());
-        document.put("url", event.getUrl());
-        document.put("httpMethod", event.getHttpMethod());
-        document.put("requestBody", event.getRequestBody());
-        document.put("interval", event.getInterval());
-        document.put("timezone", event.getTimezone());
-
-        mongoClient.getDatabase("casread").getCollection("job").insertOne(new Document(document));
+//        Map<String, Object> document = new HashMap<>();
+//        document.put("_id", event.getJobId());
+//        document.put("url", event.getUrl());
+//        document.put("httpMethod", event.getHttpMethod());
+//        document.put("requestBody", event.getRequestBody());
+//        document.put("interval", event.getInterval());
+//        document.put("timezone", event.getTimezone());
+//
+//        mongoClient.getDatabase("casread").getCollection("job").insertOne(new Document(document));
         return Mono.empty();
     }
 

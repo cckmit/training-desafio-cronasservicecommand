@@ -12,7 +12,7 @@ import training.cronasservicecommand.domain.job.command.CreateJobCommand;
 
 @RestController
 @RequiredArgsConstructor
-public class CreateJobController {
+public class CommandController {
     private final EventsGateway eventBus;
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "/job", produces = MediaType.APPLICATION_JSON_VALUE)

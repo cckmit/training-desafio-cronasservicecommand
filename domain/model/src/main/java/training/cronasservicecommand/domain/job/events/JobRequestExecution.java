@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import training.cronasservicecommand.domain.common.Event;
-import training.cronasservicecommand.domain.job.JobExecution;
+import training.cronasservicecommand.domain.job.Task;
 
 @Data
 @NoArgsConstructor
@@ -13,7 +13,7 @@ public class JobRequestExecution implements Event {
 
     public static final String EVENT_NAME = "cas.events.job.jobrequestexecution";
     private String jobId;
-    private JobExecution executions;
+    private Task executions;
 
     @Override
     public String name() {

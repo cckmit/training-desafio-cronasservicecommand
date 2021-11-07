@@ -8,6 +8,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import training.cronasservicecommand.domain.common.Event;
 import training.cronasservicecommand.domain.common.EventsGateway;
+import training.cronasservicecommand.domain.generic.DomainEvent;
 import training.cronasservicecommand.domain.job.Job;
 import training.cronasservicecommand.domain.job.events.JobCreated;
 import training.cronasservicecommand.domain.job.gateway.JobMessageGateway;
@@ -58,8 +59,8 @@ public class DefaultBeansConfig {
         log.log(Level.WARNING, "CONFIGURACION FAKE: " + beanName, beanName);
     }
 
-    private final JobMessageGateway jobMessageGateway = (Event event) -> {
-        log.info("Usando JobMessageGateway sin implementación: " + event.name());
+    private final JobMessageGateway jobMessageGateway = (DomainEvent event) -> {
+        log.info("Usando JobMessageGateway sin implementación: " + event.getType());
         return Mono.empty();
     };
 
@@ -80,7 +81,7 @@ public class DefaultBeansConfig {
         @Override
         public Mono<Job> findById(String id) {
             log.info("Usando JobRepository.findById sin implementación");
-            return Mono.just(Job.builder().id(id).build());
+            return Mono.empty();
         }
 
         @Override

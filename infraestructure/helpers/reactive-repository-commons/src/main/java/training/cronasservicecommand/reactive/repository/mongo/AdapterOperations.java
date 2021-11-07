@@ -1,4 +1,4 @@
-package com.sura.reactive.repository.mongo;
+package training.cronasservicecommand.reactive.repository.mongo;
 
 import org.reactivecommons.utils.ObjectMapper;
 import org.springframework.data.repository.query.ReactiveQueryByExampleExecutor;
@@ -49,7 +49,6 @@ public abstract class AdapterOperations<E, D, I, R extends ReactiveCrudRepositor
     protected Flux<E> doQueryMany(Flux<D> query) {
         return query.map(this::toEntity);
     }
-
 
     protected D toData(E entity) {
         return mapper.map(entity, dataClass);

@@ -1,4 +1,4 @@
-package com.sura.reactive.repository.mongo.testdata;
+package training.cronasservicecommand.reactive.repository.mongo.testdata;
 
 import org.springframework.data.repository.query.ReactiveQueryByExampleExecutor;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
