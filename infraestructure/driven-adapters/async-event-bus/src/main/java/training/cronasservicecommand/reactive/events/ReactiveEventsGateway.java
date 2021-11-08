@@ -24,12 +24,6 @@ public class ReactiveEventsGateway implements EventsGateway {
 
     private final DomainEventBus domainEventBus;
 
-//    @Override
-//    public Mono<Void> emit(DomainEvent event) {
-//        log.log(Level.INFO, "Emitiendo evento de dominio: {0}: {1}", new String[]{event.getType(), event.toString()});
-//        return from(domainEventBus.emit(new org.reactivecommons.api.domain.DomainEvent<>(event.getType(), UUID.randomUUID().toString(), event)));
-//    }
-
     @Override
     public Mono<Void> emit(Command command) {
         log.log(Level.INFO, "Emitiendo evento de interno: {0}: {1}", new String[]{command.getType(), command.toString()});

@@ -4,11 +4,9 @@ import org.reactivecommons.utils.ObjectMapper;
 import org.reactivecommons.utils.ObjectMapperImp;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import training.cronasservicecommand.domain.job.gateway.JobMessageGateway;
 import training.cronasservicecommand.domain.storedevent.gateway.StoredEventRepository;
+import training.cronasservicecommand.usecase.job.AddTaskUseCase;
 import training.cronasservicecommand.usecase.job.CreateJobUseCase;
-import training.cronasservicecommand.usecase.job.GenerateExecutionJobUseCase;
-import training.cronasservicecommand.usecase.job.RequestExecutionJobUseCase;
 
 @Configuration
 public class UseCaseConfig {
@@ -19,13 +17,8 @@ public class UseCaseConfig {
     }
 
     @Bean
-    public GenerateExecutionJobUseCase generateExecutionJobUseCase(StoredEventRepository repository) {
-        return new GenerateExecutionJobUseCase(repository);
-    }
-
-    @Bean
-    public RequestExecutionJobUseCase requestExecutionJobUseCase(StoredEventRepository repository) {
-        return new RequestExecutionJobUseCase(repository);
+    public AddTaskUseCase addTaskUseCase(StoredEventRepository repository) {
+        return new AddTaskUseCase(repository);
     }
 
     @Bean

@@ -1,27 +1,16 @@
 package training.cronasservicecommand.reactive;
 
 import lombok.*;
-import org.reactivecommons.async.api.HandlerRegistry;
 import org.reactivecommons.async.impl.config.annotations.EnableMessageListeners;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import training.cronasservicecommand.domain.job.Task;
-import training.cronasservicecommand.domain.job.events.JobGenerateExecutionPlan;
-import training.cronasservicecommand.domain.job.events.JobRequestExecution;
-import training.cronasservicecommand.usecase.job.GenerateExecutionJobUseCase;
-import training.cronasservicecommand.usecase.job.RequestExecutionJobUseCase;
-
-import java.util.Date;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Configuration
 @EnableMessageListeners
 @RequiredArgsConstructor
 public class CommandHandlersConfig {
 
-    private final GenerateExecutionJobUseCase generateExecutionJobUseCase;
-    private final RequestExecutionJobUseCase requestExecutionJobUseCase;
+//    private final GenerateExecutionJobUseCase generateExecutionJobUseCase;
+//    private final RequestExecutionJobUseCase requestExecutionJobUseCase;
 
 //    @Bean
 //    public HandlerRegistry registry() {

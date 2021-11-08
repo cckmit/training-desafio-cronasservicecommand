@@ -12,9 +12,9 @@ import java.util.Date;
 @NoArgsConstructor
 public class StoredEventData {
     @Id
-    public String id;
-    public String aggregateId;
-    public String name;
+    private String id;
+    private String aggregateId;
+    private String name;
     private String eventBody;
     private Date createDate;
 }

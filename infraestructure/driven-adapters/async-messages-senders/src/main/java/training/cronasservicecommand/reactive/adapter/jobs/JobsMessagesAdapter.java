@@ -7,7 +7,6 @@ import org.reactivecommons.async.api.DirectAsyncGateway;
 import org.reactivecommons.async.impl.config.annotations.EnableDirectAsyncGateway;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
-import training.cronasservicecommand.domain.common.Event;
 import training.cronasservicecommand.domain.generic.DomainEvent;
 import training.cronasservicecommand.domain.job.gateway.JobMessageGateway;
 

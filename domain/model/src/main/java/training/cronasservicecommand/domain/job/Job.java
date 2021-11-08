@@ -4,6 +4,7 @@ import training.cronasservicecommand.domain.generic.AggregateRoot;
 import training.cronasservicecommand.domain.generic.DomainEvent;
 import training.cronasservicecommand.domain.generic.EventChange;
 import training.cronasservicecommand.domain.job.events.JobCreated;
+import training.cronasservicecommand.domain.job.events.TaskAssigned;
 
 import java.util.Date;
 import java.util.List;
@@ -32,6 +33,10 @@ public class Job extends AggregateRoot implements EventChange {
         appendChange(new JobCreated(name,url,httpMethod,requestBody,interval,timezone, email)).apply();
     }
 
+    public void addTask(String taskId, Date scheduleDate, Date startDate, Date endDate, Long executionTimeSecond, String httpCode, String status){
+        appendChange(new TaskAssigned(taskId, scheduleDate, startDate, endDate, executionTimeSecond, httpCode, status)).apply();
+    }
+
     private Job(String id){
         super(id);
         subscribe(this);
@@ -43,6 +48,11 @@ public class Job extends AggregateRoot implements EventChange {
             this.interval = event.getInterval();
             this.timezone = event.getTimezone();
             this.status = JobStatus.ENABLE;
+        });
+        listener((TaskAssigned event) -> {
+            Task task = new Task(event.getTaskId(), event.getScheduleDate(), event.getStartDate(),event.getEndDate(), event.getExecutionTimeSecond(), event.getHttpCode(), event.getStatus());
+            this.lastExecutionDate = event.getEndDate();
+            this.tasks.put(event.getTaskId(), task);
         });
     }
 

@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-import training.cronasservicecommand.domain.common.Event;
 import training.cronasservicecommand.domain.common.EventsGateway;
 import training.cronasservicecommand.domain.generic.DomainEvent;
 import training.cronasservicecommand.domain.job.Job;
@@ -16,6 +15,8 @@ import training.cronasservicecommand.domain.job.gateway.JobRepository;
 import training.cronasservicecommand.domain.storedevent.StoredEvent;
 import training.cronasservicecommand.domain.storedevent.gateway.StoredEventRepository;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 
 
@@ -97,6 +98,12 @@ public class DefaultBeansConfig {
         public Mono<StoredEvent> save(StoredEvent event) {
             log.info("Usando StoredEventRepository.save sin implementación");
             return Mono.just(event);
+        }
+
+        @Override
+        public Flux<DomainEvent> getById(String aggregateId) {
+            log.info("Usando StoredEventRepository.findById sin implementación");
+            return Flux.empty();
         }
     };
 

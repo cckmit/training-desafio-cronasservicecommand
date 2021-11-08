@@ -1,8 +1,6 @@
 package training.cronasservicecommand.domain.generic;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import reactor.core.publisher.Flux;
 
 public abstract class AggregateRoot {
 
@@ -27,8 +25,7 @@ public abstract class AggregateRoot {
         changeEventSubscriber.applyEvent(domainEvent);
     }
 
-    public List<DomainEvent> getUncommittedChanges() {
-        List<DomainEvent> domainEvents = changeEventSubscriber.getChanges();
-        return domainEvents;
+    public Flux<DomainEvent> getUncommittedChanges() {
+        return Flux.fromIterable(changeEventSubscriber.getChanges());
     }
 }
